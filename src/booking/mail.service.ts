@@ -3,6 +3,16 @@ import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
 import type { CreateBookingDto } from './dto/create-booking.dto';
 import { buildAdminEmail, buildCustomerEmail } from './email-templates';
+import { BANNER_BASE64, BANNER_CID, BANNER_FILENAME } from './banner-image';
+
+/** Header banner shipped inline with every email, referenced by cid in the HTML. */
+const bannerAttachment = {
+  filename: BANNER_FILENAME,
+  content: BANNER_BASE64,
+  encoding: 'base64' as const,
+  cid: BANNER_CID,
+  contentDisposition: 'inline' as const,
+};
 
 /**
  * Wraps a single Nodemailer transport (Hostinger SMTP) and knows how to send
@@ -60,6 +70,7 @@ export class MailService implements OnModuleInit {
       subject: admin.subject,
       text: admin.text,
       html: admin.html,
+      attachments: [bannerAttachment],
     });
 
     // 2) Customer copy — best-effort.
@@ -70,6 +81,7 @@ export class MailService implements OnModuleInit {
         subject: customer.subject,
         text: customer.text,
         html: customer.html,
+        attachments: [bannerAttachment],
       });
     } catch (err) {
       this.logger.error(

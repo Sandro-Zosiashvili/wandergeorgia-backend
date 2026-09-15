@@ -1,4 +1,5 @@
 import type { CreateBookingDto } from './dto/create-booking.dto';
+import { BANNER_CID } from './banner-image';
 
 /** Brand palette, mirrored from the frontend (site.brand). */
 const BRAND = {
@@ -52,8 +53,8 @@ function shell(inner: string): string {
   return `
   <div style="margin:0;padding:24px;background:${BRAND.paper};font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
     <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid ${BRAND.line};border-radius:14px;overflow:hidden;">
-      <div style="background:${BRAND.ink};padding:22px 28px;">
-        <span style="color:${BRAND.champagne};font-size:18px;font-weight:700;letter-spacing:.02em;">WanderKartli</span>
+      <div style="background:${BRAND.ink};font-size:0;line-height:0;color:${BRAND.champagne};">
+        <img src="cid:${BANNER_CID}" alt="WanderKartli" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;" />
       </div>
       <div style="padding:28px;">
         ${inner}
