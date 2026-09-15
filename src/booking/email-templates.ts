@@ -10,7 +10,7 @@ const BRAND = {
 };
 
 const CONTACT = {
-  name: 'WanderGeorgia',
+  name: 'WanderKartli',
   phone: '+995 591 90 69 05',
   whatsapp: 'https://wa.me/995591906905',
 };
@@ -53,7 +53,7 @@ function shell(inner: string): string {
   <div style="margin:0;padding:24px;background:${BRAND.paper};font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
     <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid ${BRAND.line};border-radius:14px;overflow:hidden;">
       <div style="background:${BRAND.ink};padding:22px 28px;">
-        <span style="color:${BRAND.champagne};font-size:18px;font-weight:700;letter-spacing:.02em;">WanderGeorgia</span>
+        <span style="color:${BRAND.champagne};font-size:18px;font-weight:700;letter-spacing:.02em;">WanderKartli</span>
       </div>
       <div style="padding:28px;">
         ${inner}
@@ -146,7 +146,7 @@ export function buildCustomerEmail(dto: CreateBookingDto): {
       <a href="${CONTACT.whatsapp}" style="color:${BRAND.emerald};font-weight:600;">WhatsApp</a>
       or call <a href="tel:${CONTACT.phone.replace(/\s/g, '')}" style="color:${BRAND.emerald};font-weight:600;">${CONTACT.phone}</a>.
     </p>
-    <p style="margin:18px 0 0;color:#9a938a;font-size:13px;">— The WanderGeorgia team</p>`;
+    <p style="margin:18px 0 0;color:#9a938a;font-size:13px;">— The WanderKartli team</p>`;
 
   const text = [
     `Thank you, ${dto.name}!`,
@@ -160,7 +160,7 @@ export function buildCustomerEmail(dto: CreateBookingDto): {
     ``,
     `WhatsApp: ${CONTACT.whatsapp}`,
     `Phone:    ${CONTACT.phone}`,
-    `— The WanderGeorgia team`,
+    `— The WanderKartli team`,
   ].join('\n');
 
   return {

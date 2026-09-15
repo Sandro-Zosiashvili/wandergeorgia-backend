@@ -22,7 +22,7 @@ async function bootstrap(): Promise<void> {
 
   const port = process.env.PORT ?? 4000;
   await app.listen(port);
-  Logger.log(`WanderGeorgia backend listening on http://localhost:${port}`, 'Bootstrap');
+  Logger.log(`WanderKartli backend listening on http://localhost:${port}`, 'Bootstrap');
 }
 
 void bootstrap();

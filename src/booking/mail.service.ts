@@ -5,8 +5,11 @@ import type { CreateBookingDto } from './dto/create-booking.dto';
 import { buildAdminEmail, buildCustomerEmail } from './email-templates';
 
 /**
- * Wraps a single Nodemailer transport (Gmail SMTP via App Password) and knows
- * how to send the two booking emails: one to the admin, one to the customer.
+ * Wraps a single Nodemailer transport (Hostinger SMTP) and knows how to send
+ * the two booking emails: one to the admin, one to the customer.
+ *
+ * Host/port default to Hostinger; override with MAIL_HOST / MAIL_PORT if the
+ * mailbox ever moves to another provider. Port 465 uses SSL, 587 uses STARTTLS.
  */
 @Injectable()
 export class MailService implements OnModuleInit {
@@ -25,9 +28,14 @@ export class MailService implements OnModuleInit {
       );
     }
 
-    // Gmail SMTP. `service: 'gmail'` picks the right host/port automatically.
+    // Hostinger SMTP (host/port overridable via env; 465 = SSL, 587 = STARTTLS).
+    const host = this.config.get<string>('MAIL_HOST') ?? 'smtp.hostinger.com';
+    const port = Number(this.config.get<string>('MAIL_PORT') ?? 465);
+
     this.transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host,
+      port,
+      secure: port === 465,
       auth: { user, pass },
     });
   }
@@ -38,7 +46,7 @@ export class MailService implements OnModuleInit {
    * best-effort and logged.
    */
   async sendBookingEmails(dto: CreateBookingDto): Promise<void> {
-    const from = `"WanderGeorgia" <${this.config.get<string>('MAIL_USER')}>`;
+    const from = `"WanderKartli" <${this.config.get<string>('MAIL_USER')}>`;
     const adminTo = this.config.get<string>('ADMIN_EMAIL');
 
     const admin = buildAdminEmail(dto);
