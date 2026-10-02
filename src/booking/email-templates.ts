@@ -16,9 +16,10 @@ const CONTACT = {
   whatsapp: 'https://wa.me/995591906905',
 };
 
-/** GEL formatter — e.g. 1200 -> "₾1,200". */
-function gel(amount: number): string {
-  return '₾' + amount.toLocaleString('en-US');
+/** Money formatter — e.g. 1200 -> "$1,200". Defaults to USD. */
+function money(amount: number, currency?: string): string {
+  const symbol = currency === 'GEL' ? '₾' : '$';
+  return symbol + amount.toLocaleString('en-US');
 }
 
 /** Nice human date — e.g. "2026-09-14" -> "14 Sep 2026". Falls back to raw. */
@@ -86,12 +87,13 @@ export function buildAdminEmail(dto: CreateBookingDto): {
     <table style="width:100%;border-collapse:collapse;">
       ${row('Tour', `${dto.tourTitle} <span style="color:#9a938a;">(${dto.tourType})</span>`)}
       ${row('Travelers', String(dto.travelers))}
+      ${dto.vehicle ? row('Vehicle', dto.vehicle) : ''}
       ${row('Dates', dateSpan)}
       ${row('Flight details', dto.flightDetails || '—')}
       ${row('Name', dto.name)}
       ${row('Email', `<a href="mailto:${dto.email}" style="color:${BRAND.emerald};">${dto.email}</a>`)}
       ${row('Phone', `<a href="tel:${dto.phone}" style="color:${BRAND.emerald};">${dto.phone}</a>`)}
-      ${row('Estimated total', `<strong>${gel(dto.total)}</strong>`)}
+      ${row('Estimated total', `<strong>${money(dto.total, dto.currency)}</strong>`)}
     </table>
     <p style="margin:22px 0 0;padding:14px 16px;background:${BRAND.paper};border-radius:10px;color:${BRAND.ink};font-size:14px;">
       Reply directly to this email to reach ${dto.name}.
@@ -101,12 +103,13 @@ export function buildAdminEmail(dto: CreateBookingDto): {
     `NEW BOOKING REQUEST — ${dto.tourTitle} (${dto.tourType})`,
     ``,
     `Travelers:      ${dto.travelers}`,
+    `Vehicle:        ${dto.vehicle || '—'}`,
     `Dates:          ${dateSpan}`,
     `Flight details: ${dto.flightDetails || '—'}`,
     `Name:           ${dto.name}`,
     `Email:          ${dto.email}`,
     `Phone:          ${dto.phone}`,
-    `Estimated total:${gel(dto.total)}`,
+    `Estimated total:${money(dto.total, dto.currency)}`,
   ].join('\n');
 
   return {
@@ -140,6 +143,7 @@ export function buildCustomerEmail(dto: CreateBookingDto): {
     <table style="width:100%;border-collapse:collapse;">
       ${row('Tour', dto.tourTitle)}
       ${row('Travelers', String(dto.travelers))}
+      ${dto.vehicle ? row('Vehicle', dto.vehicle) : ''}
       ${row('Dates', dateSpan)}
     </table>
     <p style="margin:24px 0 0;color:#4a463f;font-size:15px;line-height:1.6;">

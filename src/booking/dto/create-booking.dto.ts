@@ -26,6 +26,24 @@ export class CreateBookingDto {
   @IsIn(['one-day', 'multi-day'])
   tourType!: 'one-day' | 'multi-day';
 
+  /** Selected vehicle class label, e.g. "SUV / Jeep (4x4)". */
+  @IsOptional()
+  @IsString()
+  @MaxLength(80)
+  vehicle?: string;
+
+  /** Number of charged tour days. */
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  days?: number;
+
+  /** Currency code for `total` (e.g. "USD"). */
+  @IsOptional()
+  @IsString()
+  @MaxLength(10)
+  currency?: string;
+
   // ── Trip details ─────────────────────────────────────────────
   @IsInt()
   @Min(1)
@@ -58,7 +76,7 @@ export class CreateBookingDto {
   @MaxLength(60)
   phone!: string;
 
-  /** Total price in GEL, computed on the frontend. Informational only. */
+  /** Total price (USD), computed on the frontend. Informational only. */
   @IsInt()
   @Min(0)
   total!: number;
