@@ -1,13 +1,31 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from './prisma/prisma.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './auth/user.entity';
+import { Booking } from './booking/booking.entity';
+import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 
 @Module({
   imports: [
     // Loads .env and makes ConfigService available everywhere.
     ConfigModule.forRoot({ isGlobal: true }),
-    PrismaModule,
+
+    // TypeORM → Neon PostgreSQL. SSL is required by Neon. `synchronize` keeps
+    // the schema in sync with the entities; disable it with DB_SYNCHRONIZE=false
+    // and use migrations for a stricter production workflow.
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'postgres',
+        url: config.getOrThrow<string>('DATABASE_URL'),
+        ssl: { rejectUnauthorized: false },
+        entities: [User, Booking],
+        synchronize: config.get<string>('DB_SYNCHRONIZE', 'true') !== 'false',
+      }),
+    }),
+
+    AuthModule,
     BookingModule,
   ],
 })

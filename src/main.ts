@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 
 async function bootstrap(): Promise<void> {
     const app = await NestFactory.create(AppModule);
+
+    // Read HttpOnly auth cookies (JwtStrategy pulls the token from here).
+    app.use(cookieParser());
 
     // Parse FRONTEND_ORIGIN into array or fallback
     const rawOrigins = process.env.FRONTEND_ORIGIN;
