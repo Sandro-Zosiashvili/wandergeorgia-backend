@@ -8,6 +8,9 @@
 .env
 .env.local
 
+# Neon local context (written by `neon link`; may hold connection context)
+.neon
+
 # logs
 *.log
 npm-debug.log*
