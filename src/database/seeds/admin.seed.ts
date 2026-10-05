@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { User } from '../../auth/user.entity';
 import { Booking } from '../../booking/booking.entity';
 

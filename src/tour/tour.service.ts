@@ -15,9 +15,19 @@ export class TourService {
     @InjectRepository(Tour) private readonly tours: Repository<Tour>,
   ) {}
 
-  /** All tours, newest first. */
+  /** All tours, newest first (admin). */
   findAll(): Promise<Tour[]> {
     return this.tours.find({ order: { createdAt: 'DESC' } });
+  }
+
+  /** Active tours only — for the public website. */
+  findAllActive(): Promise<Tour[]> {
+    return this.tours.find({ where: { isActive: true }, order: { createdAt: 'DESC' } });
+  }
+
+  /** A single active tour by slug, or null — for the public website. */
+  findActiveBySlug(slug: string): Promise<Tour | null> {
+    return this.tours.findOne({ where: { slug, isActive: true } });
   }
 
   /** A single tour by id, or 404. */

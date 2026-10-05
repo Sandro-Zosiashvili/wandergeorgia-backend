@@ -7,10 +7,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-/** One day of a tour's itinerary (title + description). */
+/** One day of a tour's itinerary (title + description + its own highlights). */
 export interface ItineraryDay {
   title: string;
   description: string;
+  highlights: string[];
 }
 
 /** A tour in the catalog, managed from the admin dashboard. */
