@@ -3,8 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './auth/user.entity';
 import { Booking } from './booking/booking.entity';
+import { Tour } from './tour/tour.entity';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
+import { TourModule } from './tour/tour.module';
 
 @Module({
   imports: [
@@ -20,13 +22,14 @@ import { BookingModule } from './booking/booking.module';
         type: 'postgres',
         url: config.getOrThrow<string>('DATABASE_URL'),
         ssl: { rejectUnauthorized: false },
-        entities: [User, Booking],
+        entities: [User, Booking, Tour],
         synchronize: config.get<string>('DB_SYNCHRONIZE', 'true') !== 'false',
       }),
     }),
 
     AuthModule,
     BookingModule,
+    TourModule,
   ],
 })
 export class AppModule {}

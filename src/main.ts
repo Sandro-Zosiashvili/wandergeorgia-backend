@@ -1,44 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe, Logger } from '@nestjs/common';
-import cookieParser from 'cookie-parser';
+import { Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { configureApp } from './setup';
 
+/** Local / long-running server entry (not used on Vercel — see api/index.ts). */
 async function bootstrap(): Promise<void> {
-    const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule);
+  configureApp(app);
 
-    // Read HttpOnly auth cookies (JwtStrategy pulls the token from here).
-    app.use(cookieParser());
-
-    // Parse FRONTEND_ORIGIN into array or fallback
-    const rawOrigins = process.env.FRONTEND_ORIGIN;
-    const allowedOrigins = rawOrigins
-        ? rawOrigins.split(',').map((o) => o.trim()).filter(Boolean)
-        : [
-            'https://wanderkartli.com',
-            'https://www.wanderkartli.com',
-            'http://localhost:3000',
-        ];
-
-    // Configure robust CORS for browsers (handles OPTIONS preflight automatically)
-    app.enableCors({
-        origin: allowedOrigins,
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-        credentials: true,
-    });
-
-    // Validate every incoming DTO; strip unknown fields; reject extras.
-    app.useGlobalPipes(
-        new ValidationPipe({
-            whitelist: true,
-            forbidNonWhitelisted: true,
-            transform: true,
-        }),
-    );
-
-    const port = process.env.PORT ?? 4000;
-    await app.listen(port);
-    Logger.log(`WanderKartli backend listening on port ${port}`, 'Bootstrap');
+  const port = process.env.PORT ?? 4000;
+  await app.listen(port);
+  Logger.log(`WanderKartli backend listening on port ${port}`, 'Bootstrap');
 }
 
 void bootstrap();
