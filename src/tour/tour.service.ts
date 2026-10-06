@@ -15,14 +15,25 @@ export class TourService {
     @InjectRepository(Tour) private readonly tours: Repository<Tour>,
   ) {}
 
-  /** All tours, newest first (admin). */
+  /** All tours, in admin sort order (admin). */
   findAll(): Promise<Tour[]> {
-    return this.tours.find({ order: { createdAt: 'DESC' } });
+    return this.tours.find({ order: { orderIndex: 'ASC', createdAt: 'DESC' } });
   }
 
-  /** Active tours only — for the public website. */
+  /** Active tours only, in sort order — for the public website. */
   findAllActive(): Promise<Tour[]> {
-    return this.tours.find({ where: { isActive: true }, order: { createdAt: 'DESC' } });
+    return this.tours.find({
+      where: { isActive: true },
+      order: { orderIndex: 'ASC', createdAt: 'DESC' },
+    });
+  }
+
+  /** Persist a new order: each id's position becomes its orderIndex. */
+  async reorder(ids: string[]): Promise<{ ok: true }> {
+    await this.tours.manager.transaction(async (em) => {
+      await Promise.all(ids.map((id, index) => em.update(Tour, { id }, { orderIndex: index })));
+    });
+    return { ok: true };
   }
 
   /** A single active tour by slug, or null — for the public website. */

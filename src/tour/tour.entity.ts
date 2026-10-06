@@ -65,6 +65,10 @@ export class Tour {
   @Column({ type: 'jsonb', default: () => "'[]'::jsonb" })
   gallery!: string[];
 
+  /** Manual sort position within its category (lower = earlier). */
+  @Column({ type: 'int', default: 0 })
+  orderIndex!: number;
+
   @Index()
   @Column({ type: 'boolean', default: true })
   isActive!: boolean;

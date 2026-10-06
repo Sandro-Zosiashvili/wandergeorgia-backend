@@ -13,6 +13,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TourService } from './tour.service';
 import { CreateTourDto } from './dto/create-tour.dto';
 import { UpdateTourDto } from './dto/update-tour.dto';
+import { ReorderToursDto } from './dto/reorder-tours.dto';
 import type { Tour } from './tour.entity';
 
 /**
@@ -37,6 +38,12 @@ export class TourController {
   @Post()
   create(@Body() dto: CreateTourDto): Promise<Tour> {
     return this.tours.create(dto);
+  }
+
+  // Declared before PATCH :id so "reorder" isn't matched as a tour id.
+  @Patch('reorder')
+  reorder(@Body() dto: ReorderToursDto): Promise<{ ok: true }> {
+    return this.tours.reorder(dto.ids);
   }
 
   @Patch(':id')
