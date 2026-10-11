@@ -5,10 +5,12 @@ import { User } from './auth/user.entity';
 import { Booking } from './booking/booking.entity';
 import { Tour } from './tour/tour.entity';
 import { Memory } from './memory/memory.entity';
+import { Driver } from './driver/driver.entity';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { TourModule } from './tour/tour.module';
 import { MemoryModule } from './memory/memory.module';
+import { DriverModule } from './driver/driver.module';
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { MemoryModule } from './memory/memory.module';
         type: 'postgres',
         url: config.getOrThrow<string>('DATABASE_URL'),
         ssl: { rejectUnauthorized: false },
-        entities: [User, Booking, Tour, Memory],
+        entities: [User, Booking, Tour, Memory, Driver],
         synchronize: config.get<string>('DB_SYNCHRONIZE', 'true') !== 'false',
       }),
     }),
@@ -33,6 +35,7 @@ import { MemoryModule } from './memory/memory.module';
     BookingModule,
     TourModule,
     MemoryModule,
+    DriverModule,
   ],
 })
 export class AppModule {}

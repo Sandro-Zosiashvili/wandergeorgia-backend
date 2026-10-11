@@ -55,6 +55,15 @@ export class Booking {
   @Column({ type: 'text', nullable: true })
   adminNotes!: string | null;
 
+  /** Payment state, set by the admin. Plain varchar (not a pg enum) so the
+   *  column can be added without enum-type DDL. */
+  @Column({ type: 'varchar', length: 20, default: 'UNPAID' })
+  paymentStatus!: 'UNPAID' | 'DEPOSIT_PAID' | 'FULL_PAID';
+
+  /** Assigned driver's name (from the team roster), or null. */
+  @Column({ type: 'text', nullable: true })
+  driverName!: string | null;
+
   @Index()
   @Column({ type: 'enum', enum: BookingStatus, default: BookingStatus.PENDING })
   status!: BookingStatus;

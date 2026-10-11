@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Giorgi Beridze",
+    "phone": "+995 599 12 34 56",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+    "bio": "Fifteen years guiding across the Caucasus. Knows every mountain pass, family cellar and the best viewpoints the crowds miss.",
+    "vehicleModel": "Toyota Land Cruiser",
+    "plate": "AA-123-BB",
+    "capacity": 4,
+    "status": "ON_TOUR",
+    "orderIndex": 0,
+    "isActive": true
+  },
+  {
+    "name": "Levan Kapanadze",
+    "phone": "+995 591 44 55 66",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
+    "bio": "Calm, meticulous and endlessly patient — ideal for families and longer multi-day journeys across Georgia.",
+    "vehicleModel": "Mercedes V-Class",
+    "plate": "CC-456-DD",
+    "capacity": 7,
+    "status": "ACTIVE",
+    "orderIndex": 1,
+    "isActive": true
+  },
+  {
+    "name": "Nika Tsiklauri",
+    "phone": "+995 568 77 88 99",
+    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
+    "bio": "A Kazbegi local and keen hiker who turns a drive into a story. Fluent in English and happiest above the tree line.",
+    "vehicleModel": "Toyota Prado",
+    "plate": "EE-789-FF",
+    "capacity": 4,
+    "status": "ACTIVE",
+    "orderIndex": 2,
+    "isActive": true
+  },
+  {
+    "name": "Davit Maisuradze",
+    "phone": "+995 577 10 20 30",
+    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
+    "bio": "Seasoned transfer and group driver with a spotless record across long Georgian routes.",
+    "vehicleModel": "Ford Transit",
+    "plate": "GG-012-HH",
+    "capacity": 7,
+    "status": "INACTIVE",
+    "orderIndex": 3,
+    "isActive": true
+  }
+]

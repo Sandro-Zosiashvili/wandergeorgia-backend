@@ -2,7 +2,7 @@
   "name": "wandergeorgia-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "WanderGeorgia booking API — receives booking requests and emails the admin + the customer.",
+  "description": "WanderGeorgia booking API \u2014 receives booking requests and emails the admin + the customer.",
   "scripts": {
     "build": "nest build",
     "start": "nest start",
@@ -10,7 +10,8 @@
     "start:prod": "node dist/main.js",
     "seed:admin": "ts-node src/database/seeds/admin.seed.ts",
     "seed:tours": "ts-node src/database/seeds/tours.seed.ts",
-    "seed:memories": "ts-node src/database/seeds/memories.seed.ts"
+    "seed:memories": "ts-node src/database/seeds/memories.seed.ts",
+    "seed:drivers": "ts-node src/database/seeds/drivers.seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
