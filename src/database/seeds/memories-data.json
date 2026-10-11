@@ -1,0 +1,74 @@
+[
+  {
+    "type": "image",
+    "mediaUrl": "https://images.unsplash.com/photo-1565008576549-57569a49371d?q=80&w=1600&auto=format&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1565008576549-57569a49371d?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Kazbegi & Gergeti Trinity",
+    "caption": "Watched the sun hit Gergeti Trinity before anyone else arrived. Pure silence, just us and the mountains.",
+    "travelerName": "Emily R.",
+    "country": "United Kingdom",
+    "date": "2026-09-18",
+    "orderIndex": 0,
+    "isActive": true
+  },
+  {
+    "type": "video",
+    "mediaUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1564755123091-ac6bfcddf43b?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Georgian Military Road",
+    "caption": "The drive through the Caucasus felt like a film the whole way — every bend opened onto something bigger.",
+    "travelerName": "Daniel & Sofia",
+    "country": "Germany",
+    "date": "2026-09-11",
+    "orderIndex": 1,
+    "isActive": true
+  },
+  {
+    "type": "image",
+    "mediaUrl": "https://images.unsplash.com/photo-1660038090901-9dc6d7768e47?q=80&w=1600&auto=format&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1660038090901-9dc6d7768e47?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Kakheti Wine Country",
+    "caption": "A family cellar, an 8,000-year-old qvevri method, and the best lunch of the whole trip.",
+    "travelerName": "Marcus T.",
+    "country": "United States",
+    "date": "2026-09-05",
+    "orderIndex": 2,
+    "isActive": true
+  },
+  {
+    "type": "image",
+    "mediaUrl": "https://images.unsplash.com/photo-1505294399615-2479253a4990?q=80&w=1600&auto=format&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1505294399615-2479253a4990?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Tbilisi Old Town & Baths",
+    "caption": "Balconies, backstreets and sulphur baths — the city completely won us over in a single afternoon.",
+    "travelerName": "Nina P.",
+    "country": "Poland",
+    "date": "2026-08-29",
+    "orderIndex": 3,
+    "isActive": true
+  },
+  {
+    "type": "video",
+    "mediaUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Svaneti Highlands",
+    "caption": "Medieval stone towers against the snow line. Nowhere else on earth looks quite like Mestia.",
+    "travelerName": "Lucas M.",
+    "country": "France",
+    "date": "2026-08-22",
+    "orderIndex": 4,
+    "isActive": true
+  },
+  {
+    "type": "image",
+    "mediaUrl": "https://images.unsplash.com/photo-1558352532-d30aee197dea?q=80&w=1600&auto=format&fit=crop",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1558352532-d30aee197dea?q=80&w=1000&auto=format&fit=crop",
+    "tourTitle": "Mtskheta Day Trip",
+    "caption": "The ancient capital, Jvari Monastery above the rivers, and warm hosts who treated us like family.",
+    "travelerName": "Hiroshi T.",
+    "country": "Japan",
+    "date": "2026-08-14",
+    "orderIndex": 5,
+    "isActive": true
+  }
+]

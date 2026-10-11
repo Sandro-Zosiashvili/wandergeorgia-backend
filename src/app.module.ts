@@ -4,9 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './auth/user.entity';
 import { Booking } from './booking/booking.entity';
 import { Tour } from './tour/tour.entity';
+import { Memory } from './memory/memory.entity';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { TourModule } from './tour/tour.module';
+import { MemoryModule } from './memory/memory.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { TourModule } from './tour/tour.module';
         type: 'postgres',
         url: config.getOrThrow<string>('DATABASE_URL'),
         ssl: { rejectUnauthorized: false },
-        entities: [User, Booking, Tour],
+        entities: [User, Booking, Tour, Memory],
         synchronize: config.get<string>('DB_SYNCHRONIZE', 'true') !== 'false',
       }),
     }),
@@ -30,6 +32,7 @@ import { TourModule } from './tour/tour.module';
     AuthModule,
     BookingModule,
     TourModule,
+    MemoryModule,
   ],
 })
 export class AppModule {}
