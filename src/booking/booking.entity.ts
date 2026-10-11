@@ -51,6 +51,10 @@ export class Booking {
   @Column({ type: 'text', nullable: true })
   specialRequests!: string | null;
 
+  /** Internal admin-only notes, editable from the dashboard. */
+  @Column({ type: 'text', nullable: true })
+  adminNotes!: string | null;
+
   @Index()
   @Column({ type: 'enum', enum: BookingStatus, default: BookingStatus.PENDING })
   status!: BookingStatus;

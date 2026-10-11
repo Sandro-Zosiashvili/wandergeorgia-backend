@@ -1,7 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import type { CreateBookingDto } from './dto/create-booking.dto';
+import type { UpdateBookingDto } from './dto/update-booking.dto';
 import { Booking } from './booking.entity';
 import { MailService } from './mail.service';
 
@@ -28,6 +29,34 @@ export class BookingService {
     await this.mail.sendBookingEmails(dto);
     this.logger.log(`Booking request emailed for "${dto.name}" — ${dto.tourTitle}.`);
     return { ok: true };
+  }
+
+  // ── Admin (JWT-guarded) ──────────────────────────────────────────────────
+
+  /** All bookings, newest first. */
+  findAll(): Promise<Booking[]> {
+    return this.bookings.find({ order: { createdAt: 'DESC' } });
+  }
+
+  /** A single booking by id, or 404. */
+  async findOne(id: string): Promise<Booking> {
+    const booking = await this.bookings.findOne({ where: { id } });
+    if (!booking) throw new NotFoundException(`Booking ${id} not found`);
+    return booking;
+  }
+
+  /** Update a booking's status and/or admin notes. */
+  async update(id: string, dto: UpdateBookingDto): Promise<Booking> {
+    const booking = await this.findOne(id);
+    Object.assign(booking, dto);
+    return this.bookings.save(booking);
+  }
+
+  /** Hard-delete a booking. 404 if it doesn't exist. */
+  async remove(id: string): Promise<{ ok: true; id: string }> {
+    const result = await this.bookings.delete({ id });
+    if (!result.affected) throw new NotFoundException(`Booking ${id} not found`);
+    return { ok: true, id };
   }
 
   /** Store the booking row in Neon. Failures are logged, not thrown. */
