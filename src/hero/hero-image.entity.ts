@@ -29,6 +29,10 @@ export class HeroImage {
   @Column({ type: 'int', default: 0 })
   orderIndex!: number;
 
+  /** Per-locale overrides, e.g. `{ ru: { alt, place } }`. */
+  @Column({ type: 'jsonb', nullable: true })
+  i18n!: Record<string, Record<string, unknown>> | null;
+
   @Index()
   @Column({ type: 'boolean', default: true })
   isActive!: boolean;

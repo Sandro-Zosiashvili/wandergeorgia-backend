@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsOptional, IsString, MaxLength, Min } from 'class-validator';
+import { IsBoolean, IsInt, IsObject, IsOptional, IsString, MaxLength, Min } from 'class-validator';
 
 /** Shape of a hero image create request from the admin dashboard. */
 export class CreateHeroImageDto {
@@ -24,4 +24,9 @@ export class CreateHeroImageDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+  /** Per-locale text overrides, e.g. { ru: { title, overview, ... } }. */
+  @IsOptional()
+  @IsObject()
+  i18n?: Record<string, Record<string, unknown>>;
 }
+

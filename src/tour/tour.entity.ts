@@ -65,6 +65,15 @@ export class Tour {
   @Column({ type: 'jsonb', default: () => "'[]'::jsonb" })
   gallery!: string[];
 
+  /**
+   * Per-locale overrides for the translatable text fields, e.g.
+   * `{ ru: { title, location, duration, overview, highlights, included,
+   * excluded, itinerary } }`. English stays in the columns above; a missing
+   * translation falls back to English at the resolver.
+   */
+  @Column({ type: 'jsonb', nullable: true })
+  i18n!: Record<string, Record<string, unknown>> | null;
+
   /** Manual sort position within its category (lower = earlier). */
   @Column({ type: 'int', default: 0 })
   orderIndex!: number;

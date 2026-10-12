@@ -12,7 +12,8 @@
     "seed:tours": "ts-node src/database/seeds/tours.seed.ts",
     "seed:memories": "ts-node src/database/seeds/memories.seed.ts",
     "seed:drivers": "ts-node src/database/seeds/drivers.seed.ts",
-    "seed:hero": "ts-node src/database/seeds/hero.seed.ts"
+    "seed:hero": "ts-node src/database/seeds/hero.seed.ts",
+    "seed:i18n": "ts-node src/database/seeds/i18n.seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",

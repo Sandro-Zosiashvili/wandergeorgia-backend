@@ -1,13 +1,4 @@
-import {
-  IsBoolean,
-  IsIn,
-  IsInt,
-  IsOptional,
-  IsString,
-  Matches,
-  MaxLength,
-  Min,
-} from 'class-validator';
+import { IsBoolean, IsIn, IsInt, IsObject, IsOptional, IsString, Matches, MaxLength, Min } from 'class-validator';
 
 /**
  * Shape of a memory create request from the admin dashboard. Validated
@@ -60,4 +51,9 @@ export class CreateMemoryDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+  /** Per-locale text overrides, e.g. { ru: { title, overview, ... } }. */
+  @IsOptional()
+  @IsObject()
+  i18n?: Record<string, Record<string, unknown>>;
 }
+

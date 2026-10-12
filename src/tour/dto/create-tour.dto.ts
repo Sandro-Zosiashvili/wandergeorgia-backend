@@ -1,17 +1,5 @@
 import { Type } from 'class-transformer';
-import {
-  ArrayMaxSize,
-  IsArray,
-  IsBoolean,
-  IsIn,
-  IsInt,
-  IsOptional,
-  IsString,
-  Matches,
-  MaxLength,
-  Min,
-  ValidateNested,
-} from 'class-validator';
+import { ArrayMaxSize, IsArray, IsBoolean, IsIn, IsInt, IsObject, IsOptional, IsString, Matches, MaxLength, Min, ValidateNested } from 'class-validator';
 import { ItineraryDayDto } from './itinerary-day.dto';
 
 /**
@@ -96,4 +84,9 @@ export class CreateTourDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+  /** Per-locale text overrides, e.g. { ru: { title, overview, ... } }. */
+  @IsOptional()
+  @IsObject()
+  i18n?: Record<string, Record<string, unknown>>;
 }
+
