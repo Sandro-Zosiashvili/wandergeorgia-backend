@@ -6,11 +6,13 @@ import { Booking } from './booking/booking.entity';
 import { Tour } from './tour/tour.entity';
 import { Memory } from './memory/memory.entity';
 import { Driver } from './driver/driver.entity';
+import { HeroImage } from './hero/hero-image.entity';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { TourModule } from './tour/tour.module';
 import { MemoryModule } from './memory/memory.module';
 import { DriverModule } from './driver/driver.module';
+import { HeroModule } from './hero/hero.module';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { DriverModule } from './driver/driver.module';
         type: 'postgres',
         url: config.getOrThrow<string>('DATABASE_URL'),
         ssl: { rejectUnauthorized: false },
-        entities: [User, Booking, Tour, Memory, Driver],
+        entities: [User, Booking, Tour, Memory, Driver, HeroImage],
         synchronize: config.get<string>('DB_SYNCHRONIZE', 'true') !== 'false',
       }),
     }),
@@ -36,6 +38,7 @@ import { DriverModule } from './driver/driver.module';
     TourModule,
     MemoryModule,
     DriverModule,
+    HeroModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,37 @@
+[
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1563284223-333497472e88?auto=format&fit=crop&w=2200&h=1238&q=80",
+    "alt": "Gergeti Trinity Church beneath the snow peaks of Mount Kazbek",
+    "place": "Kazbegi",
+    "orderIndex": 0,
+    "isActive": true
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1603350576276-24747f7bbf40?auto=format&fit=crop&w=2200&h=1238&q=80",
+    "alt": "The old town of Tbilisi along the Mtkvari river at dusk",
+    "place": "Tbilisi",
+    "orderIndex": 1,
+    "isActive": true
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1694500788249-71b09a87db40?auto=format&fit=crop&w=2200&h=1238&q=80",
+    "alt": "Vineyards of the Kakheti wine region beneath the Caucasus",
+    "place": "Kakheti",
+    "orderIndex": 2,
+    "isActive": true
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1564755123091-ac6bfcddf43b?auto=format&fit=crop&w=2200&h=1238&q=80",
+    "alt": "A green valley deep in the Caucasus mountains",
+    "place": "Caucasus",
+    "orderIndex": 3,
+    "isActive": true
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1625566360146-918001e76064?auto=format&fit=crop&w=2200&h=1238&q=80",
+    "alt": "The Black Sea coast and skyline of Batumi at dawn",
+    "place": "Batumi",
+    "orderIndex": 4,
+    "isActive": true
+  }
+]
