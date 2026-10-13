@@ -7,7 +7,7 @@ import { Tour } from '../../tour/tour.entity';
 import { Memory } from '../../memory/memory.entity';
 import { Driver } from '../../driver/driver.entity';
 import { HeroImage } from '../../hero/hero-image.entity';
-import { PHRASES, TOURS_RU, HERO_RU, MEMORIES_RU } from './i18n-ru';
+import { PHRASES, TOURS_RU, HERO_RU, MEMORIES_RU, ITINERARY_RU } from './i18n-ru';
 
 /** Translate an array of short phrases via the shared dictionary; untranslated
  *  items keep their English text (graceful, never blank). */
@@ -41,6 +41,18 @@ async function run(): Promise<void> {
         console.log(`  • tour ${t.slug}: no RU entry — left to EN fallback`);
         continue;
       }
+      // Itinerary: translate each day's title + description (index-aligned),
+      // and map the day highlights through the shared phrase dictionary. Falls
+      // back to the English day if a translation is missing, so nothing drops.
+      const ruDays = ITINERARY_RU[t.slug];
+      const itinerary = ruDays
+        ? (t.itinerary ?? []).map((d, i) => ({
+            title: ruDays[i]?.title ?? d.title,
+            description: ruDays[i]?.description ?? d.description,
+            highlights: mapPhrases(d.highlights ?? []),
+          }))
+        : undefined;
+
       t.i18n = {
         ...(t.i18n ?? {}),
         ru: {
@@ -51,7 +63,7 @@ async function run(): Promise<void> {
           highlights: mapPhrases(t.highlights ?? []),
           included: mapPhrases(t.included ?? []),
           excluded: mapPhrases(t.excluded ?? []),
-          // itinerary is left to the EN fallback; translate it in the admin.
+          ...(itinerary ? { itinerary } : {}),
         },
       };
       await tourRepo.save(t);
